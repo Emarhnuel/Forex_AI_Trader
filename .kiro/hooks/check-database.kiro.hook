@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Check Database Configuration",
+  "description": "Validates database configuration and Supabase connection before running the application",
+  "version": "1",
+  "when": {
+    "type": "beforeRun",
+    "patterns": [
+      "**/*.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before running the application, please check the database configuration:\n\n1. Verify Supabase environment variables are set in .env:\n   - SUPABASE_URL\n   - SUPABASE_ANON_KEY\n2. Test Supabase client availability and installation\n3. Attempt to create a Supabase client connection\n4. Test basic database connectivity (if tables exist)\n5. Provide guidance for missing configuration or setup steps\n\nNote: It's normal for database tables to not exist in new projects - they will be created during setup. Focus on validating the connection configuration and providing helpful setup guidance."
+  }
+}
