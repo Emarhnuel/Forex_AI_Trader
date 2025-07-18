@@ -11,7 +11,7 @@ chart_analysis_task:
     6. Trend direction and strength
     7. Key price levels and zones
     8. Volume analysis if visible
-    
+
     Use your multimodal vision capabilities to thoroughly examine each frame
     and provide detailed technical analysis with high accuracy.
   expected_output: >
@@ -36,7 +36,7 @@ market_data_task:
     For trading pair {trading_pair} identified from chart analysis,
     gather comprehensive real-time market data using {data_sources} priority.
     Current analysis timestamp: {current_timestamp}
-    
+
     Collect the following data points:
     1. Current price and recent price action
     2. 24-hour volume and volume trends
@@ -45,7 +45,7 @@ market_data_task:
     5. Market sentiment indicators
     6. Volatility metrics
     7. Liquidity analysis
-    
+
     Ensure data is current (within last 5 minutes) and from reliable sources.
     Cross-reference multiple data sources for accuracy and consistency.
   expected_output: >
@@ -63,7 +63,7 @@ market_data_task:
     - timestamp: ISO datetime string
     - data_sources: array of source names
     - market_status: string ("open", "closed", "pre_market", "after_hours")
-  context: [chart_analysis_task]  
+  context: [chart_analysis_task]
   agent: financial_data_agent
   async_execution: true
   guardrail: "Verify all price data is current within last 5 minutes, includes valid timestamp, and data sources are identified"
@@ -73,10 +73,10 @@ strategy_formulation_task:
   description: >
     Using chart analysis results from {trading_pair} and current market data at {current_timestamp},
     formulate a comprehensive trading strategy with {risk_level} risk tolerance.
-    
+
     Chart analysis context: {chart_analysis}
     Market data context: {market_data}
-    
+
     Create a strategy that includes:
     1. Trade direction (long/short) with clear rationale
     2. Specific entry price levels with reasoning
@@ -88,7 +88,7 @@ strategy_formulation_task:
     8. Alternative scenarios and contingency plans
     9. Time horizon for the trade
     10. Key levels to monitor
-    
+
     Consider current market conditions, volatility, and risk management principles.
     Provide clear, actionable recommendations suitable for the identified trading pair and timeframe.
   expected_output: >
@@ -106,10 +106,10 @@ strategy_formulation_task:
     - alternative_scenarios: array of contingency plans
     - reasoning: detailed explanation of strategy logic
     - warnings: array of potential risks or concerns
-  context: [chart_analysis_task, market_data_task]  
+  context: [chart_analysis_task, market_data_task]
   agent: strategy_agent
   async_execution: false
   guardrail: "Confirm strategy includes entry points, stop loss, take profit, risk-reward ratio above 1:1, and confidence level between 0.0-1.0"
   markdown: true
-  output_file: 'outputs/trading_strategy.md'
+  output_file: "outputs/trading_strategy.md"
   create_directory: true
