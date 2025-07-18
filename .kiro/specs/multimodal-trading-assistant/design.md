@@ -29,6 +29,9 @@ The application builds upon the existing CrewAI foundation in the workspace, ext
 - **LLM Integration**: OpenAI API for agent intelligence
 - **File Handling**: Multimodal LLM processing for video analysis
 - **Real-time Communication**: WebSocket for live updates
+- **Authentication**: Auth0 for secure user management
+- **Database**: Supabase (PostgreSQL) for data persistence
+- **File Storage**: Supabase Storage for video uploads
 
 ## Project Structure Reference
 
