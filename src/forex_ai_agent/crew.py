@@ -41,9 +41,6 @@ class ForexAiAgent():
             verbose=True
         )
 
-    # To learn more about structured task outputs,
-    # task dependencies, and task callbacks, check out the documentation:
-    # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     
     @task
     def chart_analysis_task(self) -> Task:
@@ -75,13 +72,10 @@ class ForexAiAgent():
     @crew
     def crew(self) -> Crew:
         """Creates the Multimodal Trading Assistant crew"""
-        # To learn how to add knowledge sources to your crew, check out the documentation:
-        # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
-
+       
         return Crew(
-            agents=self.agents, # Automatically created by the @agent decorator
-            tasks=self.tasks, # Automatically created by the @task decorator
-            process=Process.sequential,  # Sequential processing: Chart → Data → Strategy
+            agents=self.agents, 
+            tasks=self.tasks, 
+            process=Process.sequential, 
             verbose=True,
-            # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
