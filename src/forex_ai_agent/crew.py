@@ -6,10 +6,6 @@ from forex_ai_agent.tools.video_analysis import video_analysis_tool
 from forex_ai_agent.tools.market_data import crypto_api_connector, forex_data_fetcher
 from forex_ai_agent.tools.strategy_tools import risk_calculator, strategy_validator
 
-# If you want to run a snippet of code before or after the crew starts,
-# you can use the @before_kickoff and @after_kickoff decorators
-# https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
-
 @CrewBase
 class ForexAiAgent():
     """Multimodal Trading Assistant Crew"""
@@ -17,12 +13,6 @@ class ForexAiAgent():
     agents: List[BaseAgent]
     tasks: List[Task]
 
-    # Learn more about YAML configuration files here:
-    # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
-    # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
-    
-    # If you would like to add tools to your agents, you can learn more about it here:
-    # https://docs.crewai.com/concepts/agents#agent-tools
     
     @agent
     def chart_analyst(self) -> Agent:
