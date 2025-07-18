@@ -57,3 +57,9 @@ npm run preview
 - `OPENAI_API_KEY`: Required for CrewAI agents
 - `FASTAPI_ENV`: Environment setting (development/production)
 - `CORS_ORIGINS`: Allowed origins for CORS (frontend URLs)
+- `AUTH0_DOMAIN`: Auth0 domain for authentication
+- `AUTH0_CLIENT_ID`: Auth0 client ID for frontend
+- `AUTH0_CLIENT_SECRET`: Auth0 client secret for backend
+- `SUPABASE_URL`: Supabase project URL
+- `SUPABASE_ANON_KEY`: Supabase anonymous key
+- `SUPABASE_SERVICE_KEY`: Supabase service role key
