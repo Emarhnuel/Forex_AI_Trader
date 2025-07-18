@@ -58,6 +58,7 @@ market_data_task:
     - timestamp: ISO datetime string
     - data_sources: array of source names
     - market_status: string ("open", "closed", "pre_market", "after_hours")
+  context: [chart_analysis_task]  
   agent: financial_data_agent
 
 strategy_formulation_task:
@@ -94,4 +95,5 @@ strategy_formulation_task:
     - alternative_scenarios: array of contingency plans
     - reasoning: detailed explanation of strategy logic
     - warnings: array of potential risks or concerns
+  context: [market_data_task]  
   agent: strategy_agent
