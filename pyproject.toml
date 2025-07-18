@@ -1,0 +1,35 @@
+[project]
+name = "forex_ai_agent"
+version = "0.1.0"
+description = "Forex_AI_agent using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.121.1,<1.0.0",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "python-multipart>=0.0.6",
+    "websockets>=12.0",
+    "openai>=1.0.0",
+    "opencv-python>=4.8.0",
+    "numpy>=1.24.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.0",
+    "requests>=2.31.0",
+    "aiofiles>=23.0.0"
+]
+
+[project.scripts]
+forex_ai_agent = "forex_ai_agent.main:run"
+run_crew = "forex_ai_agent.main:run"
+train = "forex_ai_agent.main:train"
+replay = "forex_ai_agent.main:replay"
+test = "forex_ai_agent.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
