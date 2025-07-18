@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Format Python Files",
+  "description": "Auto-formats Python files on save using Black formatter and isort for consistent code style and import organization",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A Python file has been saved and needs formatting. Please:\n\n1. Verify this is a Python file (.py extension)\n2. Format the code using Black formatter:\n   - Apply consistent code formatting\n   - Fix line length and spacing issues\n   - Ensure PEP 8 compliance\n3. Organize imports using isort:\n   - Sort imports alphabetically\n   - Group imports properly (standard library, third-party, local)\n   - Remove unused imports if possible\n4. If formatting tools aren't available:\n   - Install black and isort packages\n   - Then apply formatting\n\nEnsure the Python code follows the project's style guidelines and is consistently formatted for better readability and maintainability."
+  }
+}
