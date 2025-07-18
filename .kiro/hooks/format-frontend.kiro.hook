@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "name": "Format Frontend Files",
+  "description": "Auto-formats TypeScript/React files on save using Prettier and ESLint for consistent code style",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "frontend/**/*.ts",
+      "frontend/**/*.tsx",
+      "frontend/**/*.js",
+      "frontend/**/*.jsx",
+      "**/*.ts",
+      "**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A frontend file has been saved and needs formatting. Please:\n\n1. Check if this is a TypeScript/React file (.ts, .tsx, .js, .jsx)\n2. If a frontend directory exists:\n   - Format the file with Prettier for consistent styling\n   - Lint and auto-fix with ESLint for code quality\n3. If frontend directory doesn't exist yet:\n   - Note that frontend formatting will be available after Task 6.1\n4. Apply consistent formatting rules for:\n   - Indentation and spacing\n   - Import organization\n   - Code style consistency\n   - React/TypeScript best practices\n\nEnsure the code follows the project's frontend standards and is properly formatted."
+  }
+}
