@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Validate Environment",
+  "description": "Comprehensive environment validation before running to ensure all required API keys and configuration are properly set",
+  "version": "1",
+  "when": {
+    "type": "beforeRun",
+    "patterns": [
+      "**/*.py",
+      ".env"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before running the multimodal trading assistant, please validate the environment configuration:\n\n1. Check if .env file exists (critical requirement)\n2. Validate required API keys:\n   - OPENAI_API_KEY: Must be properly configured (critical for video analysis)\n   - AUTH0_DOMAIN and AUTH0_CLIENT_ID: Check if configured (warn if missing)\n   - SUPABASE_URL and SUPABASE_ANON_KEY: Check if configured (warn if missing)\n3. Ensure no placeholder values remain (like 'your_openai_api_key_here')\n4. Provide setup guidance for missing configurations:\n   - OpenAI API key from https://platform.openai.com/api-keys\n   - Auth0 setup for authentication features\n   - Supabase setup for database features\n5. Generate environment status summary\n\nFail the validation only for critical missing items (OPENAI_API_KEY), warn for optional services."
+  }
+}
