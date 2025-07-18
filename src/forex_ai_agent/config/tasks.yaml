@@ -1,0 +1,97 @@
+chart_analysis_task:
+  description: >
+    Analyze the provided trading chart video to extract comprehensive technical information.
+    Process the video frame-by-frame to identify:
+    1. Trading pair (e.g., BTC/USD, EUR/USD, GBP/JPY)
+    2. Timeframe being displayed (1m, 5m, 15m, 1h, 4h, 1d)
+    3. Technical indicators visible (RSI, MACD, Moving Averages, Bollinger Bands, etc.)
+    4. Chart patterns (triangles, head and shoulders, flags, pennants, etc.)
+    5. Support and resistance levels
+    6. Trend direction and strength
+    7. Key price levels and zones
+    8. Volume analysis if visible
+    
+    Video file path: {video_path}
+    
+    Use your multimodal vision capabilities to thoroughly examine each frame
+    and provide detailed technical analysis.
+  expected_output: >
+    A structured JSON object containing:
+    - trading_pair: string (e.g., "BTC/USD")
+    - timeframe: string (e.g., "1h")
+    - technical_indicators: array of strings
+    - chart_patterns: array of objects with pattern type and confidence
+    - support_levels: array of price levels
+    - resistance_levels: array of price levels
+    - trend_direction: string ("bullish", "bearish", "sideways")
+    - trend_strength: string ("strong", "moderate", "weak")
+    - key_observations: array of important notes
+    - confidence_score: float (0.0 to 1.0)
+  agent: chart_analyst
+
+market_data_task:
+  description: >
+    Based on the trading pair identified from chart analysis: {trading_pair},
+    gather comprehensive real-time market data including:
+    1. Current price and recent price action
+    2. 24-hour volume and volume trends
+    3. Order book data (bid/ask spread, depth)
+    4. Recent price changes (1h, 24h, 7d)
+    5. Market sentiment indicators
+    6. Volatility metrics
+    7. Liquidity analysis
+    
+    Ensure data is current (within last 5 minutes) and from reliable sources.
+    Cross-reference multiple data sources for accuracy.
+  expected_output: >
+    A structured JSON object containing:
+    - symbol: string
+    - current_price: float
+    - volume_24h: float
+    - price_change_24h: float
+    - price_change_percentage_24h: float
+    - bid_price: float
+    - ask_price: float
+    - spread: float
+    - market_cap: float (if applicable)
+    - volatility_24h: float
+    - timestamp: ISO datetime string
+    - data_sources: array of source names
+    - market_status: string ("open", "closed", "pre_market", "after_hours")
+  agent: financial_data_agent
+
+strategy_formulation_task:
+  description: >
+    Using the chart analysis results: {chart_analysis}
+    And the market data: {market_data}
+    
+    Formulate a comprehensive trading strategy that includes:
+    1. Trade direction (long/short) with clear rationale
+    2. Specific entry price levels with reasoning
+    3. Stop-loss placement based on technical levels
+    4. Take-profit targets (multiple levels if appropriate)
+    5. Position sizing recommendations
+    6. Risk-reward ratio calculation
+    7. Market condition assessment
+    8. Alternative scenarios and contingency plans
+    9. Time horizon for the trade
+    10. Key levels to monitor
+    
+    Consider current market conditions, volatility, and risk management principles.
+    Provide clear, actionable recommendations suitable for the identified trading pair and timeframe.
+  expected_output: >
+    A comprehensive trading strategy document containing:
+    - trade_direction: string ("long", "short", "neutral")
+    - entry_points: array of price levels with rationale
+    - stop_loss: float with reasoning
+    - take_profit_levels: array of price targets
+    - position_size_recommendation: string with percentage or amount
+    - risk_reward_ratio: float
+    - confidence_level: float (0.0 to 1.0)
+    - time_horizon: string ("scalp", "intraday", "swing", "position")
+    - key_levels_to_watch: array of important price levels
+    - market_conditions_assessment: string
+    - alternative_scenarios: array of contingency plans
+    - reasoning: detailed explanation of strategy logic
+    - warnings: array of potential risks or concerns
+  agent: strategy_agent
