@@ -10,8 +10,6 @@ chart_analyst:
     identifying key technical elements that inform trading decisions. You have
     years of experience analyzing price action, support/resistance levels, and
     chart patterns across multiple timeframes and trading pairs.
-  tools:
-    - video_analysis_tool
   verbose: true
   allow_delegation: false
   max_iter: 3
@@ -28,9 +26,6 @@ financial_data_agent:
     You excel at gathering comprehensive, real-time market information and
     presenting it in a structured format for analysis. You understand market
     microstructure and can interpret order flow data effectively.
-  tools:
-    - crypto_api_connector
-    - forex_data_fetcher
   verbose: true
   allow_delegation: false
   max_iter: 2
@@ -47,9 +42,6 @@ strategy_agent:
     and risk management. You excel at combining multiple data sources to formulate
     actionable trading strategies with clear risk parameters. You understand
     position sizing, risk-reward ratios, and market psychology.
-  tools:
-    - risk_calculator
-    - strategy_validator
   verbose: true
   allow_delegation: false
   max_iter: 3
