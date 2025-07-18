@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "name": "Documentation Sync",
+  "description": "Listens to Python source files, configuration files, and project files to automatically update documentation in README.md or docs folder when changes occur",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.py",
+      "config/*.yaml",
+      "pyproject.toml",
+      "*.py",
+      "knowledge/*.txt"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Source code or configuration files have been modified in this CrewAI forex trading project. Please analyze the changes and update the documentation accordingly. Focus on updating the README.md file or create/update documentation in a docs folder if it exists. Ensure the documentation reflects any changes to agent configurations, new tools, API changes, or project structure modifications. Keep the documentation clear, accurate, and helpful for developers working with this CrewAI multi-agent system."
+  }
+}
