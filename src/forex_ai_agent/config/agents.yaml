@@ -12,8 +12,6 @@ chart_analyst:
     chart patterns across multiple timeframes and trading pairs.
   verbose: true
   allow_delegation: false
-  max_iter: 3
-  memory: true
 
 financial_data_agent:
   role: >
@@ -28,8 +26,6 @@ financial_data_agent:
     microstructure and can interpret order flow data effectively.
   verbose: true
   allow_delegation: false
-  max_iter: 2
-  memory: true
 
 strategy_agent:
   role: >
@@ -44,5 +40,3 @@ strategy_agent:
     position sizing, risk-reward ratios, and market psychology.
   verbose: true
   allow_delegation: false
-  max_iter: 3
-  memory: true
