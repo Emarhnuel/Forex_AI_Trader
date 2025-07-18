@@ -6,6 +6,13 @@ from crewai import LLM
 from forex_ai_agent.tools.video_analysis import video_analysis_tool
 from forex_ai_agent.tools.market_data import crypto_api_connector, forex_data_fetcher
 from forex_ai_agent.tools.strategy_tools import risk_calculator, strategy_validator
+import os  
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+
 
 @CrewBase
 class ForexAiAgent():
@@ -22,7 +29,6 @@ class ForexAiAgent():
     max_tokens=2000,
     temperature=0.1,
     stream=True,
-    seed=42,
     api_key=os.getenv("OPENROUTER_API_KEY")
 )
     
@@ -32,7 +38,9 @@ class ForexAiAgent():
         return Agent(
             config=self.agents_config['chart_analyst'], # type: ignore[index]
             tools=[video_analysis_tool],
-            verbose=True
+            verbose=True,
+            max_rpm=26,
+            max_iter=3,
         )
 
     @agent
@@ -41,7 +49,9 @@ class ForexAiAgent():
         return Agent(
             config=self.agents_config['financial_data_agent'], # type: ignore[index]
             tools=[crypto_api_connector, forex_data_fetcher],
-            verbose=True
+            verbose=True,
+            max_rpm=26,
+            max_iter=3,
         )
 
     @agent
@@ -50,7 +60,9 @@ class ForexAiAgent():
         return Agent(
             config=self.agents_config['strategy_agent'], # type: ignore[index]
             tools=[risk_calculator, strategy_validator],
-            verbose=True
+            verbose=True,
+            max_rpm=26,
+            max_iter=3,
         )
 
     
