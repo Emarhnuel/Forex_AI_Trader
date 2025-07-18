@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Test CrewAI Configuration",
+  "description": "Tests CrewAI configuration, agents, and tools before running to ensure everything is properly set up",
+  "version": "1",
+  "when": {
+    "type": "beforeRun",
+    "patterns": [
+      "src/**/*.py",
+      "config/*.yaml",
+      "**/*crew*.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before running the CrewAI system, please validate the configuration:\n\n1. Test CrewAI library import and availability\n2. Load and validate the ForexAiAgent crew class from src.forex_ai_agent.crew\n3. Test crew instance creation and configuration loading\n4. Validate all tool imports:\n   - Video analysis tools (video_analysis_tool)\n   - Market data tools (crypto_api_connector, forex_data_fetcher)\n   - Strategy tools (risk_calculator, strategy_validator)\n5. Check agent and task YAML configuration files\n6. Provide installation commands for missing dependencies\n\nEnsure all CrewAI components are properly configured and ready to run before execution."
+  }
+}
