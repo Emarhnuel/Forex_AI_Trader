@@ -2,6 +2,7 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
+from crewai import LLM 
 from forex_ai_agent.tools.video_analysis import video_analysis_tool
 from forex_ai_agent.tools.market_data import crypto_api_connector, forex_data_fetcher
 from forex_ai_agent.tools.strategy_tools import risk_calculator, strategy_validator
@@ -10,9 +11,20 @@ from forex_ai_agent.tools.strategy_tools import risk_calculator, strategy_valida
 class ForexAiAgent():
     """Multimodal Trading Assistant Crew"""
 
-    agents: List[BaseAgent]
-    tasks: List[Task]
+    # Configuration file paths
+    agents_config = 'config/agents.yaml'
+    tasks_config = 'config/tasks.yaml'
 
+
+    llm_1 = LLM(
+    model="openrouter/google/gemini-2.5-flash-preview-05-20",
+    base_url="https://openrouter.ai/api/v1",
+    max_tokens=2000,
+    temperature=0.1,
+    stream=True,
+    seed=42,
+    api_key=os.getenv("OPENROUTER_API_KEY")
+)
     
     @agent
     def chart_analyst(self) -> Agent:
