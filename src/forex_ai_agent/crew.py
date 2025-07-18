@@ -23,7 +23,7 @@ class ForexAiAgent():
     tasks_config = 'config/tasks.yaml'
 
 
-    llm_1 = LLM(
+    llm = LLM(
     model="openrouter/google/gemini-2.5-flash-preview-05-20",
     base_url="https://openrouter.ai/api/v1",
     max_tokens=2000,
@@ -41,6 +41,7 @@ class ForexAiAgent():
             verbose=True,
             max_rpm=26,
             max_iter=3,
+            llm=llm,
         )
 
     @agent
@@ -52,6 +53,7 @@ class ForexAiAgent():
             verbose=True,
             max_rpm=26,
             max_iter=3,
+            llm=llm,
         )
 
     @agent
@@ -63,6 +65,7 @@ class ForexAiAgent():
             verbose=True,
             max_rpm=26,
             max_iter=3,
+            llm=llm,
         )
 
     
