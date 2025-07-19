@@ -71,16 +71,30 @@ class CryptoAPIConnector(BaseTool):
             if "Realtime Currency Exchange Rate" in data:
                 rate_data = data["Realtime Currency Exchange Rate"]
                 
+                # Calculate spread for crypto trading
+                bid_price = float(rate_data["8. Bid Price"])
+                ask_price = float(rate_data["9. Ask Price"])
+                spread = ask_price - bid_price
+                spread_percentage = (spread / bid_price) * 100 if bid_price > 0 else 0
+                
                 result = {
                     "success": True,
                     "symbol": f"{symbol}/{vs_currency}",
                     "current_price": float(rate_data["5. Exchange Rate"]),
-                    "bid_price": float(rate_data["8. Bid Price"]),
-                    "ask_price": float(rate_data["9. Ask Price"]),
+                    "bid_price": bid_price,
+                    "ask_price": ask_price,
+                    "spread": round(spread, 8),  # More precision for crypto
+                    "spread_percentage": round(spread_percentage, 4),
                     "timestamp": rate_data["6. Last Refreshed"],
                     "timezone": rate_data["7. Time Zone"],
                     "data_source": "Alpha Vantage",
-                    "market_status": "open" if datetime.now().weekday() < 5 else "closed"
+                    "market_status": "open",  # Crypto markets are always open (24/7)
+                    "pair_info": {
+                        "from_currency": rate_data["1. From_Currency Code"],
+                        "from_currency_name": rate_data["2. From_Currency Name"],
+                        "to_currency": rate_data["3. To_Currency Code"],
+                        "to_currency_name": rate_data["4. To_Currency Name"]
+                    }
                 }
                 
                 return json.dumps(result, indent=2)
