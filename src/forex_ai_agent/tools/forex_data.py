@@ -72,10 +72,11 @@ class ForexDataFetcher(BaseTool):
             if "Realtime Currency Exchange Rate" in data:
                 rate_data = data["Realtime Currency Exchange Rate"]
                 
-                # Calculate spread
+                # Calculate spread and spread percentage
                 bid_price = float(rate_data["8. Bid Price"])
                 ask_price = float(rate_data["9. Ask Price"])
                 spread = ask_price - bid_price
+                spread_percentage = (spread / bid_price) * 100 if bid_price > 0 else 0
                 
                 # Determine market session
                 current_time = datetime.now()
@@ -88,6 +89,7 @@ class ForexDataFetcher(BaseTool):
                     "bid_price": bid_price,
                     "ask_price": ask_price,
                     "spread": round(spread, 6),
+                    "spread_percentage": round(spread_percentage, 4),
                     "timestamp": rate_data["6. Last Refreshed"],
                     "timezone": rate_data["7. Time Zone"],
                     "market_status": market_status,
@@ -121,14 +123,19 @@ class ForexDataFetcher(BaseTool):
             })
 
     def _get_forex_market_status(self, current_time: datetime) -> str:
-        """Determine forex market status based on current time"""
-        # Forex market is open 24/5 (Monday to Friday)
+        """Determine forex market status based on current time (UTC)"""
+        # Forex market is open 24/5 (Monday 00:00 UTC to Friday 22:00 UTC)
         weekday = current_time.weekday()  # 0=Monday, 6=Sunday
+        hour = current_time.hour
         
-        if weekday >= 5:  # Saturday or Sunday
+        if weekday == 6:  # Sunday
             return "closed"
-        elif weekday == 0 and current_time.hour < 22:  # Monday before 22:00 UTC
+        elif weekday == 5:  # Saturday
+            return "closed"
+        elif weekday == 0 and hour < 0:  # Monday before market open (theoretical)
             return "pre_market"
+        elif weekday == 4 and hour >= 22:  # Friday after 22:00 UTC
+            return "closed"
         else:
             return "open"
 
