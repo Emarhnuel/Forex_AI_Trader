@@ -10,7 +10,6 @@ from forex_ai_agent.tools.strategy_tools import risk_calculator, strategy_valida
 import os  
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 
