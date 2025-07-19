@@ -13,6 +13,6 @@
   },
   "then": {
     "type": "askAgent",
-    "prompt": "Video processing tools have been modified. Please validate the video analysis tool by:\n\n1. Testing the import of VideoAnalysisTool and video_analysis_tool\n2. Checking tool initialization and configuration (name, description)\n3. Verifying required dependencies are available:\n   - OpenCV (cv2) for video processing\n   - OpenAI library for multimodal analysis\n   - NumPy for data processing\n4. Testing basic tool functionality without running actual video analysis\n5. Providing installation commands for any missing dependencies\n\nEnsure the video analysis tool is properly configured and all dependencies are available for the CrewAI forex trading system."
+    "prompt": "Video processing tools have been modified. Please validate the video analysis tool by:\n\n1. Testing the import of VideoAnalysisTool and video_analysis_tool\n2. Checking tool initialization and configuration (name, description)\n3. Verifying required dependencies are available:\n   - OpenCV (cv2) for video processing\n   - Openrouter library for multimodal analysis\n   - NumPy for data processing\n4. Testing basic tool functionality without running actual video analysis\n5. Providing installation commands for any missing dependencies\n\nEnsure the video analysis tool is properly configured and all dependencies are available for the CrewAI forex trading system."
   }
 }
