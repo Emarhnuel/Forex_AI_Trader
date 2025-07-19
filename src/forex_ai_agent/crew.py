@@ -4,7 +4,8 @@ from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
 from crewai import LLM 
 from forex_ai_agent.tools.video_analysis import video_analysis_tool
-from forex_ai_agent.tools.market_data import crypto_api_connector, forex_data_fetcher
+from forex_ai_agent.tools.crypto_data import crypto_api_connector
+from forex_ai_agent.tools.forex_data import forex_data_fetcher
 from forex_ai_agent.tools.strategy_tools import risk_calculator, strategy_validator
 import os  
 from dotenv import load_dotenv
